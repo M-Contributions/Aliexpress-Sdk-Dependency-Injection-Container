@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Rest Client Recipes-->
+
+    <virtualType name="Ticaje\AeDiContainer\Application\Service\ServiceLocator" type="Ticaje\Contract\Application\Service\ServiceLocator"/>
+
+    <virtualType name="Ticaje\AeDiContainer\Application\Service\Pattern\Pool" type="Ticaje\Contract\Patterns\Implementation\Pool\Pool"/>
+
+    <virtualType name="Ticaje\AeDiContainer\Factory\Client\Rest\GuzzleClientFactory" type="Ticaje\AConnector\Factory\Base">
+        <arguments>
+            <argument name="serviceLocator" xsi:type="object">Ticaje\AeDiContainer\Application\Service\ServiceLocator</argument>
+            <argument name="instanceName" xsi:type="string">GuzzleHttp\Client</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Ticaje\AeDiContainer\Gateway\Client\Decorator\Responder" type="Ticaje\Contract\Patterns\Implementation\Decorator\Responder">
+        <arguments>
+            <argument name="response" xsi:type="object">Ticaje\Contract\Patterns\Implementation\Decorator\Responder\Response</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Ticaje\AeDiContainer\Gateway\Implementations\Client\Rest\Implementor" type="Ticaje\AConnector\Gateway\Implementations\Client\Rest\Guzzle"/>
+
+    <!-- It's mandatory using the REST client as a VT instead of class it self so avoiding collisions -->
+    <virtualType name="Ticaje\AeDiContainer\Gateway\Client\Rest" type="Ticaje\AConnector\Gateway\Client\Rest">
+        <arguments>
+            <argument name="responder" xsi:type="object">Ticaje\AeDiContainer\Gateway\Client\Decorator\Responder</argument>
+            <argument name="clientFactory" xsi:type="object">Ticaje\AeDiContainer\Factory\Client\Rest\GuzzleClientFactory</argument>
+            <argument name="implementor" xsi:type="object">Ticaje\AeDiContainer\Gateway\Implementations\Client\Rest\Implementor</argument>
+            <argument name="baseUriKey" xsi:type="string">base_uri</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Rest Client Recipes-->
+
+    <!-- AE Requester Recipes-->
+
+    <virtualType name="Ticaje\AeDiContainer\Application\Provider\Signature\Algorithm" type="Ticaje\AeSdk\Infrastructure\Provider\Signature\Algorithm\Hash\Md5">
+        <arguments>
+            <argument name="algorithm" xsi:type="string">md5</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Ticaje\AeDiContainer\Application\Provider\Request\Builder\General" type="Ticaje\AeSdk\Infrastructure\Provider\Request\Builder\General"/>
+
+    <virtualType name="Ticaje\AeDiContainer\Application\Provider\Request\Builder\Service" type="Ticaje\AeSdk\Infrastructure\Provider\Request\Builder\Service"/>
+
+    <virtualType name="Ticaje\AeDiContainer\Application\Provider\Signature\Signer" type="Ticaje\AeSdk\Infrastructure\Provider\Signature\Signer">
+        <arguments>
+            <argument name="algorithmer" xsi:type="object">Ticaje\AeDiContainer\Application\Provider\Signature\Algorithm</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Ticaje\AeDiContainer\Application\Provider\Request\Requester" type="Ticaje\AeSdk\Infrastructure\Provider\Request\Requester">
+        <arguments>
+            <argument name="signer" xsi:type="object">Ticaje\AeDiContainer\Application\Provider\Signature\Signer</argument>
+            <argument name="publicBuilder" xsi:type="object">Ticaje\AeDiContainer\Application\Provider\Request\Builder\General</argument>
+            <argument name="serviceBuilder" xsi:type="object">Ticaje\AeDiContainer\Application\Provider\Request\Builder\Service</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Ticaje\AeSdk\Api\Mediator\Base">
+        <arguments>
+            <argument name="requester" xsi:type="object">Ticaje\AeDiContainer\Application\Provider\Request\Requester</argument>
+            <argument name="client" xsi:type="object">Ticaje\AeDiContainer\Gateway\Client\Rest</argument>
+            <argument name="pool" xsi:type="object">Ticaje\AeDiContainer\Application\Service\Pattern\Pool</argument>
+        </arguments>
+    </type>
+
+    <!-- Mediators VTs -->
+
+    <!-- We're gonna define all mediators here as VTs so avoiding cyclic dependencies and thus assuring Dependency Rule
+    and Acyclic Dependency Principle compliance -->
+
+    <!-- GET Verb -->
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Get\Product" type="Ticaje\AeSdk\Api\Mediator\Get\Product"/>
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Get\Order" type="Ticaje\AeSdk\Api\Mediator\Get\Order"/>
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Get\FreightTemplate" type="Ticaje\AeSdk\Api\Mediator\Get\FreightTemplate"/>
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Get\PromiseTemplate" type="Ticaje\AeSdk\Api\Mediator\Get\PromiseTemplate"/>
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Get\MerchantProfile" type="Ticaje\AeSdk\Api\Mediator\Get\MerchantProfile"/>
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Get\CategoryTree" type="Ticaje\AeSdk\Api\Mediator\Get\CategoryTree"/>
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Get\Attribute" type="Ticaje\AeSdk\Api\Mediator\Get\Attribute"/>
+    <!-- GET Verb -->
+
+    <!-- POST Verb -->
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Post\Product" type="Ticaje\AeSdk\Api\Mediator\Post\Product"/>
+    <virtualType name="Ticaje\AeDiContainer\Api\Mediator\Put\Product" type="Ticaje\AeSdk\Api\Mediator\Put\Product"/>
+    <!-- POST Verb -->
+
+    <!-- Mediators VTs -->
+
+</config>
