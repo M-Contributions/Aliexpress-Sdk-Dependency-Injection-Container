@@ -2,7 +2,7 @@
 ## This extension defines the recipes to consume AE-SDK from a Magento 2 instance.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/m2-ae-dic.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-ae-dic)
-[![Quality Score](https://img.shields.io/scrutinizer/g/M-Contributions/m2-ae-dic.svg?style=flat-square)](https://scrutinizer-ci.com/g/M-Contributions/m2-ae-dic)
+[![Quality Score](https://img.shields.io/scrutinizer/g/M-Contributions/di-container.svg?style=flat-square)](https://scrutinizer-ci.com/g/M-Contributions/di-container)
 [![Total Downloads](https://img.shields.io/packagist/dt/ticaje/m2-ae-dic.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-ae-dic)
 
 ## Preface
