@@ -18,7 +18,8 @@
     "magento/product-community-edition": "*",
     "ticaje/design-by-contract": "^1.0",
     "ticaje/agnostic-connector": "^1.0",
-    "ticaje/aliexpress-sdk": "^1.1"
+    "ticaje/aliexpress-sdk": "^1.1",
+    "guzzlehttp/guzzle": "^7.0"
   },
   "repositories": [
     {
