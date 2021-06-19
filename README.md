@@ -1,9 +1,11 @@
 # Magento AliExpress DI Container
 ## This extension defines the recipes to consume AE-SDK from a Magento 2 instance.
 
+[![GPLv3 License](https://img.shields.io/badge/license-GPLv3-marble.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ticaje/m2-ae-dic.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-ae-dic)
 [![Quality Score](https://img.shields.io/scrutinizer/g/M-Contributions/di-container.svg?style=flat-square)](https://scrutinizer-ci.com/g/M-Contributions/di-container)
 [![Total Downloads](https://img.shields.io/packagist/dt/ticaje/m2-ae-dic.svg?style=flat-square)](https://packagist.org/packages/ticaje/m2-ae-dic)
+[![Blog](https://img.shields.io/badge/Blog-hectorbarrientos.com-magenta)](https://hectorbarrientos.com)
 
 ## Preface
 
