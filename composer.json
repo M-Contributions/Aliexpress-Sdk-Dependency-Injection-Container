@@ -15,18 +15,11 @@
   "version": "1.0.3",
   "require": {
     "php": "^7.0",
-    "magento/product-community-edition": "*",
     "ticaje/design-by-contract": "^1.0",
     "ticaje/agnostic-connector": "^1.0",
     "ticaje/aliexpress-sdk": "^1.1",
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^6.0||^7.0"
   },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://repo.magento.com/"
-    }
-  ],
   "autoload": {
     "files": [
       "registration.php"
