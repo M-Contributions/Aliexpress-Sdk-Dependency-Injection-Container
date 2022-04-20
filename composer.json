@@ -12,7 +12,7 @@
   ],
   "description": "Module that orchestrate AE dependencies for serving Magento consumers",
   "type": "magento2-module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "require": {
     "php": "^7.0",
     "ticaje/design-by-contract": "^1.0",
